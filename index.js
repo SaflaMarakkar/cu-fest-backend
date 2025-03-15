@@ -8,7 +8,7 @@ app.use(express.json()); // Middleware to parse JSON
 // Connect to MongoDB
 const mongoose = require("mongoose");
 
-const MONGO_URI = "mongodb+srv://saflamarakkar1:SaflaMarakkar@cluster0.zw3k4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const MONGO_URI = 
 
 mongoose.connect(MONGO_URI) 
   .then(() => console.log("MongoDB connected"))
