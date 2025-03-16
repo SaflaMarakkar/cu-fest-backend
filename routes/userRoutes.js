@@ -18,13 +18,21 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
     try {
         const { firstName, lastName, email, githubAccount, phoneNumber } = req.body;
+
+        // Validate required fields
+        if (!firstName || !lastName || !email) {
+            return res.status(400).json({ message: "firstName, lastName, and email are required" });
+        }
+
         const newUser = new User({ firstName, lastName, email, githubAccount, phoneNumber });
         await newUser.save();
-        res.json({ statusCode: 200, message: "User created successfully" });
+        
+        res.status(201).json({ statusCode: 200, message: "User created successfully" });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 });
+
 
 // API 3: Get all users (Admin only)
 router.get("/", async (req, res) => {
